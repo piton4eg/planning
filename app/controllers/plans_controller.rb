@@ -33,8 +33,8 @@ class PlansController < ApplicationController
   end
 
   def index
-    @today_plans = Plan.where("plan_date > ?", Date.today()) 
-    @week_plans = Plan.where("plan_date > ? and plan_date < ?", DateTime.now.beginning_of_week(), Date.today())
+    @today_plans = Plan.where("plan_date >= ?", Date.today()) 
+    @week_plans = Plan.where("plan_date >= ? and plan_date < ?", DateTime.now.beginning_of_week(), Date.today())
     @other_plans = Plan.where("plan_date < ?", DateTime.now.beginning_of_week())
   end
 
