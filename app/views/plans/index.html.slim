@@ -1,0 +1,64 @@
+= provide(:title, "Все планы")
+h1 Все планы
+
+div class="accordion" id="accordion_plan"
+  - if @today_plans.count > 0
+    div class="accordion-group"
+      div class="accordion-heading"
+        a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_plan" href="#collapseToday" Сегодня
+      div id="collapseToday" class="accordion-body collapse in"
+        div class="accordion-inner"          
+          table class="table table-hover"
+            thead
+              tr        
+                th Текст
+                th Дата
+                th Выполнено
+                th Метки
+            tbody
+              - @today_plans.each do |one_plan|                  
+                tr        
+                  td = link_to one_plan.text, plan_path(one_plan)
+                  td = one_plan.plan_date.to_date.to_s
+                  td = one_plan.done
+                  td = one_plan.tags
+  - if @week_plans.count > 0
+    div class="accordion-group"
+      div class="accordion-heading"
+        a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_plan" href="#collapseWeek" На этой неделе
+      div id="collapseWeek" class="accordion-body collapse"
+        div class="accordion-inner"
+          table class="table table-hover"
+            thead
+              tr        
+                th Текст
+                th Дата
+                th Выполнено
+                th Метки
+            tbody
+              - @week_plans.each do |one_plan|                  
+                tr        
+                  td = link_to one_plan.text, plan_path(one_plan)
+                  td = one_plan.plan_date.to_date.to_s
+                  td = one_plan.done
+                  td = one_plan.tags
+  - if @other_plans.count > 0
+    div class="accordion-group"
+      div class="accordion-heading"
+        a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_plan" href="#collapseOther" Остальные
+      div id="collapseOther" class="accordion-body collapse"
+        div class="accordion-inner"
+          table class="table table-hover"
+            thead
+              tr        
+                th Текст
+                th Дата
+                th Выполнено
+                th Метки
+            tbody
+              - @other_plans.each do |one_plan|                  
+                tr        
+                  td = link_to one_plan.text, plan_path(one_plan)
+                  td = one_plan.plan_date.to_date.to_s
+                  td = one_plan.done
+                  td = one_plan.tags

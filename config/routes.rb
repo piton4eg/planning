@@ -1,4 +1,8 @@
 Planning::Application.routes.draw do
+  resources :plans
+
+  root to: 'plans#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

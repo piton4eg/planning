@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title
+      = full_title(yield(:title))
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    /[if lt IE 9] script src="http://html5shim.googlecode.com/svn/trunk/html5.js"
+  body
+    
+    div class="navbar navbar-fixed-top navbar-inverse"
+      div class="navbar-inner"
+        div class="container"
+          a class="brand" href=root_path Просто планы
+          ul class="nav nav-pills pull-right"
+            li = link_to "Добавить план", new_plan_path
+            li = link_to "Обо мне", "#"
+    div class="container"
+      - flash.each do |key, value|
+        = content_tag(:div, value, class: "alert alert-#{key}")
+      div class="row"
+        div class="span9" = yield
+        div class="span3"
+          h2 Доп блок
+          p В данном блоке будет куча дополнительной бесполезной информации

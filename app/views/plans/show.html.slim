@@ -1,0 +1,13 @@
+= provide(:title, "План #{@plan.id} на #{@plan.plan_date.to_date.to_s}")
+
+div class="span4"  
+  fieldset    
+    legend План №#{@plan.id} от #{@plan.plan_date.to_date}
+
+    div class="plan_text"
+      = @plan.text            
+    hr
+    div class="plan_tags" = @plan.tags
+    div class="form-actions"
+      =' link_to "Редактировать", edit_plan_path(@plan), class: 'btn btn-success'
+      = link_to "Удалить", plan_path(@plan), method: :delete, data: { confirm: "Вы уверены?" }, class: 'btn btn-danger'

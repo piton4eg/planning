@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'slim'
+gem "bootstrap-sass", "~> 2.3.1.0"
 
 group :development, :test do
   gem 'sqlite3', '1.3.7'
@@ -19,6 +20,9 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'twitter-bootstrap-rails'
+  gem 'therubyracer'
+  gem 'less-rails'
 end
 
 gem 'jquery-rails'
