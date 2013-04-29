@@ -15,15 +15,15 @@ class PlansController < ApplicationController
   end
 
   def show
-    @plan = Plan.find(params[:id])
+    @plan = PlanDecorator.decorate(Plan.where_id(params[:id]))
   end
 
   def edit
-    @plan = Plan.find(params[:id])
+    @plan = PlanDecorator.decorate(Plan.where_id(params[:id]))
   end
 
   def update
-    @plan = Plan.find(params[:id])
+    @plan = PlanDecorator.decorate(Plan.where_id(params[:id]))
     if @plan.update_attributes(params[:plan])
       flash[:success] = 'Изменения сохранены'
       redirect_to plan_path(@plan)
@@ -33,15 +33,14 @@ class PlansController < ApplicationController
   end
 
   def index
-    @today_plans = Plan.where("plan_date >= ?", Date.today()) 
-    @week_plans = Plan.where("plan_date >= ? and plan_date < ?", DateTime.now.beginning_of_week(), Date.today())
-    @other_plans = Plan.where("plan_date < ?", DateTime.now.beginning_of_week())
+    @today_plans = PlanDecorator.decorate_collection(Plan.today_plans)
+    @week_plans = PlanDecorator.decorate_collection(Plan.week_plans)
+    @other_plans = PlanDecorator.decorate_collection(Plan.other_plans)
   end
 
   def destroy
-    Plan.find(params[:id]).destroy
+    Plan.where_id(params[:id]).destroy
     flash[:success] = 'Спринт успешно удален'
-    redirect_to root_path
-    
+    redirect_to root_path    
   end
 end

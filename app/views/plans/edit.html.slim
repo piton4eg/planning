@@ -1,4 +1,4 @@
-= provide(:title, "Редактирование плана #{@plan.id} на #{@plan.plan_date.to_date.to_s}")
+= provide(:title, "Редактирование плана #{@plan.legend}")
 
 div class="span6"
   = form_for @plan, html: { class: 'form-horizontal' } do |f|
@@ -14,7 +14,7 @@ div class="span6"
       div class="control-group"
         = f.label :plan_date, "Дата", class: 'control-label'
         div class="controls"
-          = f.text_field :plan_date, value: @plan.plan_date.to_date.to_s, class: 'text_field'
+          = f.text_field :plan_date, value: @plan.plan_date, class: 'text_field'
       div class="control-group"
         = f.label :tags, "Метки", class: 'control-label'
         div class="controls"
