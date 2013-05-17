@@ -40,7 +40,7 @@ class PlansController < ApplicationController
 
   def destroy
     Plan.where_id(params[:id]).destroy
-    flash[:success] = 'Спринт успешно удален'
+    flash[:success] = 'План успешно удален'
     redirect_to root_path    
   end
 end
